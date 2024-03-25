@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Result Analyser</title>
+    <style>
+
+        /* CSS for the body */
+        body {
+            text-align: center;
+            background-image: linear-gradient(to right, lightblue , #cb5ad1);
+        }
+        .flex-container{display: flex;justify-content: space-around;}
+        /* CSS for card */
+        .card {
+          width: 300px;
+          height: 230px;
+          background-color: #ffffff;
+          border-radius: 10px;
+          border: 1px solid #ccc;
+          box-shadow: 0px 0px 10px rgba(0, 0, 255, 0); /* Initially no shadow */
+          transition: box-shadow 0.3s ease; /* Smooth transition */
+        }
+      
+        /* CSS for hover effect */
+        .card:hover {
+          box-shadow: 0px 0px 20px rgba(0, 0, 255, 0.5); /* Blue shadow on hover */
+        }
+        /* Additional styling for form elements */
+        form {
+            margin: 10px; /* Add some space between the form and the card border */
+        }
+
+        label, input[type="text"], input[type="file"], input[type="submit"] {
+            display: block;
+            margin-bottom: 10px; /* Add some space between form elements */
+        }
+        /* Beautiful textbox style */
+        input[type="text"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        /* Hide default file input */
+        input[type="file"] {
+            display: none;
+        }
+
+        .custom-file-upload {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            display: inline-block;
+            padding: 6px 12px;
+            cursor: pointer;
+            }
+
+
+        /* Beautiful button style */
+        input[type="submit"]  {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff; /* Blue color */
+            color: #ffffff; /* White text color */
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        /* Button hover effect */
+        input[type="submit"]:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+
+
+      </style>
+
+</head>
+<body>
+    <h1>SAL Education</h1>
+
+    <h1>Result Analyser</h1>
+<br>
+<div class="flex-container">
+    <div class="card">
+        
+    <form method="post" enctype="multipart/form-data">
+        <br>
+        <input type="text" name="branch_code" id="branch_code" placeholder="Enter Branch Code">
+        <br>
+        <label for="file" class="custom-file-upload">Choose file</label>
+        <input type="file" name="file" id="file" >
+        <br>
+        <br>
+        <input type="submit" value="Upload">
+    </form>
+</div></div>
+</body>
+</html>
