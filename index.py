@@ -3,8 +3,8 @@ import result_analyser
 
 app = Flask(__name__)
 
-UPLOAD_FOLDER = '/home/SmitM1/Analysis_App/uploads'
-COMBINED_DATA_PATH = '/home/SmitM1/Analysis_App/combined_data.csv'
+UPLOAD_FOLDER = 'uploads'
+COMBINED_DATA_PATH = 'combined_data.csv'
 
 @app.route('/', methods=['GET', 'POST'])
 def upload_file():

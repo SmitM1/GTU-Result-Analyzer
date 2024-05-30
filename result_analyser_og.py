@@ -70,15 +70,13 @@ def process_csv(filepath, branch_code):
     input_branch = int(branch_code)
     df5 = df4[df4['BR_CODE'] == input_branch]
     
-    # df5.drop(columns=['BR_CODE'], inplace=True)
-
     #removing the columns of subjects which contain all NaN values
     df5 = df5.dropna(axis=1, how='all')
 
-    df5 = df5.drop(columns=['BR_CODE'], axis=1)
+   
+
     # df5.set_index('SR NO', inplace=True)
     
-
     def count_fail(count_back):
         count = 0
         
@@ -93,7 +91,7 @@ def process_csv(filepath, branch_code):
     dict_2['Total'] = total_sum
     dict_2['Total result in %'] = np.round((dict_2['No of student pass in all subject']/total_sum) *100, decimals=2)
 
-    df_3 = pd.DataFrame(columns=df5.columns[2:-5])
+    df_3 = pd.DataFrame(columns=df5.columns[3:-5])
 
     def count_student_grades(df_5, df_3):
         # Initialize a dictionary to store grade counts for each subject
@@ -112,21 +110,17 @@ def process_csv(filepath, branch_code):
         df_3.reset_index(drop=True, inplace=True)
         
         # Set 'Subject name' as a new column
-        subject_names = [
-        'No of student in AA', 
-        'No of student in AB', 
-        'No of student in BB', 
-        'No of student in BC', 
-        'No of student in CC', 
-        'No of student in CD', 
-        'No of student in DD', 
-        'No of student in FF',
+        df_3['Subject name'] = [
+            'No of student in AA', 
+            'No of student in AB', 
+            'No of student in BB', 
+            'No of student in BC', 
+            'No of student in CC', 
+            'No of student in CD', 
+            'No of student in DD', 
+            'No of student in FF',
         ]
-        if 'Indian Constitution' in df5.columns:
-            subject_names.append('No of student in PS')
-    
-        df_3['Subject name'] = subject_names
-
+        
         # Set 'Subject name' as index
         df_3.set_index('Subject name', inplace=True)
         
@@ -138,15 +132,13 @@ def process_csv(filepath, branch_code):
 
         df_4 = df_3.copy()
         
-        # Divide each column by the corresponding Total value and multiply by 100
-        for col in df_4.columns:
-            df_4[col] = (df_4[col] / df_4.loc['Total', col]) * 100
+        df_4 = (df_4 / total_sum[0]) * 100
         
         diff_ff_total = df_4.loc['Total'] - df_4.loc['No of student in FF']
 
         df_4.loc['PER SUBJECT RESULT'] = diff_ff_total
 
-        df_4 = df_4.map(lambda x: f"{x:.2f}%")
+        df_4 = df_4.applymap(lambda x: f"{x:.2f}%")
         
         # Drop unwanted index columns
         df_3.columns.name = None

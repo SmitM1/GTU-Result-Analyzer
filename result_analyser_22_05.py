@@ -78,7 +78,6 @@ def process_csv(filepath, branch_code):
     df5 = df5.drop(columns=['BR_CODE'], axis=1)
     # df5.set_index('SR NO', inplace=True)
     
-
     def count_fail(count_back):
         count = 0
         
@@ -138,9 +137,7 @@ def process_csv(filepath, branch_code):
 
         df_4 = df_3.copy()
         
-        # Divide each column by the corresponding Total value and multiply by 100
-        for col in df_4.columns:
-            df_4[col] = (df_4[col] / df_4.loc['Total', col]) * 100
+        df_4 = (df_4 / total_sum[0]) * 100
         
         diff_ff_total = df_4.loc['Total'] - df_4.loc['No of student in FF']
 
